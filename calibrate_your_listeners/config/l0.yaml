@@ -1,0 +1,37 @@
+pl:
+  system: l0
+wandb_params:
+  project: calibrate_your_listeners
+  exp_name: l0
+  group_name: l0
+  dryrun: True
+  tags: 
+    - debug
+model_params:
+  name: l0
+  type: normal # vs. dropout
+  vocab: shapeworld # gpt2
+  listener_idx: 0 # \in [0, 14]
+  shapeworld_word2emb_size: 50
+  dropout_rate: 0.0
+dataset_params:
+  name: shapeworld
+  data_loader_workers: 8
+  # reference https://github.com/juliaiwhite/amortized-rsa/blob/master/shapeworld.py
+  n_examples: 1000
+  n_images: 3
+  p_correct: 0.5
+  multi_processing: False # True
+  data_type: reference
+  image_type: single
+  data_dir: data/shapeworld
+  num_shapeworld_tokens: 0
+training_params:
+  gpu_device: 8
+  num_epochs: 100
+  checkpoint_steps: 100
+  seed: 13
+  cuda: True
+optim_params:
+  batch_size: 32
+  learning_rate: 0.0001
